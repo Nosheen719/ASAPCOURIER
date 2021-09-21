@@ -14,8 +14,10 @@ public class ConnectDB {
     public static Connection getConnection() {
         
         try {
-            String dbuser="sa";
-            String dbuser_pass="afnan719";
+            String dbuser="fahim";
+            String dbuser_pass="123456";
+//            String dbuser="sa";
+//            String dbuser_pass="afnan719";
             String dbname="EMPLOYEEORDER";
             Connection connection = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName="+dbname+";selectMethod=cursor", dbuser,dbuser_pass);
             System.out.println("Database Connection Successful.");

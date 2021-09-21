@@ -4,22 +4,25 @@
  * and open the template in the editor.
  */
 package Employee;
-import Database.ConnectDB;
- import java.sql.*;
-/**
- import java.sql.*;
 
+import Database.ConnectDB;
+import java.sql.*;
+
+/**
+ *
+ *
  * @author rusla
  */
 public class employeemenu extends javax.swing.JFrame {
-private Connection connection;
+
+    private Connection connection;
 
     /**
      * Creates new form employeemenu
      */
     public employeemenu() {
         initComponents();
-        this.connection=ConnectDB.getConnection();
+        this.connection = ConnectDB.getConnection();
 
     }
 
@@ -103,6 +106,11 @@ private Connection connection;
                 empcompletedorderbtnMouseClicked(evt);
             }
         });
+        empcompletedorderbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                empcompletedorderbtnActionPerformed(evt);
+            }
+        });
         mainsidepanelemployee.add(empcompletedorderbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 230, 50));
 
         employeeprofilebtn.setBackground(new java.awt.Color(0, 0, 0));
@@ -147,6 +155,11 @@ private Connection connection;
         emppendingorderbtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 emppendingorderbtnMouseClicked(evt);
+            }
+        });
+        emppendingorderbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emppendingorderbtnActionPerformed(evt);
             }
         });
         mainsidepanelemployee.add(emppendingorderbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 230, 50));
@@ -249,7 +262,7 @@ private Connection connection;
                 jButton2ActionPerformed(evt);
             }
         });
-        acceptorderpanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 560, 140, -1));
+        acceptorderpanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 560, 160, -1));
 
         jButton3.setText("View Order Details");
         acceptorderpanel.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 560, -1, -1));
@@ -354,35 +367,35 @@ private Connection connection;
     }// </editor-fold>//GEN-END:initComponents
 
     private void employeeprofilebtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeprofilebtnMouseClicked
-       changeablemenuemployee.setVisible(true);
-       acceptorderpanel.setVisible(false);
-       employeeprofile.setVisible(true);
-       completedorder.setVisible(false);
-       pendingorderpanel.setVisible(false);
+        changeablemenuemployee.setVisible(true);
+        acceptorderpanel.setVisible(false);
+        employeeprofile.setVisible(true);
+        completedorder.setVisible(false);
+        pendingorderpanel.setVisible(false);
     }//GEN-LAST:event_employeeprofilebtnMouseClicked
 
     private void empacceptorderbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empacceptorderbtnMouseClicked
-          changeablemenuemployee.setVisible(true);
-       acceptorderpanel.setVisible(true);
-       employeeprofile.setVisible(false);
-       completedorder.setVisible(false);
-       pendingorderpanel.setVisible(false);
+        changeablemenuemployee.setVisible(true);
+        acceptorderpanel.setVisible(true);
+        employeeprofile.setVisible(false);
+        completedorder.setVisible(false);
+        pendingorderpanel.setVisible(false);
     }//GEN-LAST:event_empacceptorderbtnMouseClicked
 
     private void emppendingorderbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_emppendingorderbtnMouseClicked
-          changeablemenuemployee.setVisible(true);
-       acceptorderpanel.setVisible(false);
-       employeeprofile.setVisible(false);
-       completedorder.setVisible(false);
-       pendingorderpanel.setVisible(true);
+        changeablemenuemployee.setVisible(true);
+        acceptorderpanel.setVisible(false);
+        employeeprofile.setVisible(false);
+        completedorder.setVisible(false);
+        pendingorderpanel.setVisible(true);
     }//GEN-LAST:event_emppendingorderbtnMouseClicked
 
     private void empcompletedorderbtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_empcompletedorderbtnMouseClicked
-          changeablemenuemployee.setVisible(true);
-       acceptorderpanel.setVisible(false);
-       employeeprofile.setVisible(false);
-       completedorder.setVisible(true);
-       pendingorderpanel.setVisible(false);
+        changeablemenuemployee.setVisible(true);
+        acceptorderpanel.setVisible(false);
+        employeeprofile.setVisible(false);
+        completedorder.setVisible(true);
+        pendingorderpanel.setVisible(false);
     }//GEN-LAST:event_empcompletedorderbtnMouseClicked
 
     private void employeeprofilebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeprofilebtnActionPerformed
@@ -410,8 +423,28 @@ private Connection connection;
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Custome details:");
+        String sql = "select * from CUSTOMERINFO";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs=ps.executeQuery();
+            while(rs.next()){
+                System.out.println(rs.getInt("CustomerId"));
+                System.out.println(rs.getString("CustomerName"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void emppendingorderbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emppendingorderbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emppendingorderbtnActionPerformed
+
+    private void empcompletedorderbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_empcompletedorderbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_empcompletedorderbtnActionPerformed
 
     /**
      * @param args the command line arguments
